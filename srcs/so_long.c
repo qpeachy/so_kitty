@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:50:52 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/21 17:21:43 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/22 15:58:27 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_img	*which_tile(char type, t_sl *sl)
 	if (type == 'e')
 		return(&(sl->map.textures[EXIT_BEFORE]));
 	if (type == 'p')
-		return(&(sl->player.pos[S_FOWARD]));
+		return(&(sl->player.current));
 	return (NULL);
 }
 
@@ -121,6 +121,8 @@ int	pre_game(t_sl *sl, char **m)
 	sl->win.renderer.addr = mlx_get_data_addr(sl->win.renderer.img,
 							&(sl->win.renderer.bits_per_pixel),
 							&(sl->win.renderer.line_length), &(sl->win.renderer.endian));
+	load_all(sl);
+	sl->player.current = sl->player.pos[S_FOWARD];
 	return (1);
 }
 
@@ -139,7 +141,6 @@ int	main(int ac, char **av)
 		return (0);
 	if (!pre_game(&sl, m))
 		return (EXIT_FAILURE);
-	load_all(&sl);
 	mapping(m, &sl);
 	sl.map.graph = m;
 	mlx_hook(sl.win.window, 17, 1L << 0, close_window, &sl);

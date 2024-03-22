@@ -6,12 +6,28 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:36:32 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/22 11:20:28 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/22 17:25:25 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+typedef enum e_player
+{
+	S_BACK,
+	S_FOWARD,
+	S_LEFT,
+	S_RIGHT,
+	L_BACK,
+	L_FOWARD,
+	L_LEFT,
+	L_RIGHT,
+	R_BACK,
+	R_FOWARD,
+	R_LEFT,
+	R_RIGHT,
+} t_player;
 
 typedef struct	s_charaters {
 	int	collectibles;
@@ -53,10 +69,17 @@ typedef struct	s_mob
 {
 	int	x;
 	int	y;
+	int direction;
 	int width;
 	int height;
 	t_img	pos[12];
+	t_img	current;
 }	t_mob;
+
+typedef struct vecteur{
+	int	x;
+	int	y;
+} t_vect;
 
 typedef struct s_sl
 {
@@ -75,22 +98,6 @@ enum textures
 	EXIT_BEFORE,
 	EXIT_AFTER,
 	FAUX,
-};
-
-enum player
-{
-	S_BACK,
-	S_FOWARD,
-	S_LEFT,
-	S_RIGHT,
-	L_BACK,
-	L_FOWARD,
-	L_LEFT,
-	L_RIGHT,
-	R_BACK,
-	R_FOWARD,
-	R_LEFT,
-	R_RIGHT,
 };
 
 #endif

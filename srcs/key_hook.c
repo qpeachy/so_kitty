@@ -6,17 +6,18 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:03:28 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/22 13:03:41 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/22 17:32:43 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/* void	in_hook(t_sl *sl, t_img *img)
+
+
+/* t_img *which_change(t_sl *sl)
 {
 	
 } */
-
 
 void	in_hook_mapping(char **m, t_sl *sl, t_img *img)
 {
@@ -42,86 +43,35 @@ void	in_hook_mapping(char **m, t_sl *sl, t_img *img)
 	put_in_camera(sl);
 }
 
+
 void	move_character(t_sl *sl, t_img *img, int x, int y)
 {
-	(void)y;
-	if (sl->map.graph[sl->player.x][sl->player.y] == '1')
+	t_vect old_pos;
+
+	old_pos.x = sl->player.x;
+	old_pos.y = sl->player.y;
+	if (sl->map.graph[sl->player.x + x][sl->player.y + y] == '1')
 		return ;
+	sl->player.x += x;
+	sl->player.y += y;
 	if (sl->map.graph[sl->player.x][sl->player.y] == 'c')
 		sl->characs.collectibles --;
 	sl->map.graph[sl->player.x][sl->player.y] = 'p';
-	sl->map.graph[x][y] = '.';
+	sl->map.graph[old_pos.x][old_pos.y] = '.';
 	in_hook_mapping(sl->map.graph, sl, img);
 }
 
-/* void	move_character_y(t_sl *sl, t_img *img, int x, int y)
-{
-	(void)x;
-	if (sl->map.graph[sl->player.x][sl->player.y] == '1')
-		return ;
-	sl->map.graph[sl->player.x][sl->player.y] = 'p';
-	sl->map.graph[x][y] = '.';
-	in_hook_mapping(sl->map.graph, sl, img);
-} */
-
 int	key_hook(int kc, t_sl *sl)
 {
-	int p_x;
-	int p_y;
-
-	print_arr(sl->map.graph, sl);
+	if (sl->player.x <= 0 || sl->player.y <= 0 || sl->player.x >= sl->map.height|| sl->player.y >= sl->map.width)
+		return (0);
 	if (kc == KEY_UP)
-	{
-		if (sl->player.x <= 0 || sl->player.y <= 0 || sl->player.x >= sl->map.height|| sl->player.y >= sl->map.width)
-			return (0);
-		printf("\n(x,y)(%d,%d)\n", sl->player.y, sl->player.x);
-		p_x = sl->player.x;
-		p_y = sl->player.y;
-		if (sl->map.graph[sl->player.x - 1][sl->player.y] == '1')
-			return (0);
-		sl->player.x--;
-		printf("\n(x,y)(%d,%d)\n", sl->player.y, sl->player.x);
-		move_character(sl, &(sl->player.pos[R_BACK]), p_x, p_y);
-	}
+		move_character(sl, &(sl->player.pos[R_BACK]), -1, 0);
 	if (kc == KEY_DOWN)
-	{
-		if (sl->player.x <= 0 || sl->player.y <= 0 || sl->player.x >= sl->map.height|| sl->player.y >= sl->map.width)
-			return (0);
-		printf("\n(x,y)(%d,%d)\n", sl->player.y, sl->player.x);
-		p_x = sl->player.x;
-		p_y = sl->player.y;
-		if (sl->map.graph[sl->player.x + 1][sl->player.y] == '1')
-			return (0);
-		sl->player.x++;
-		printf("\n(x,y)(%d,%d)\n", sl->player.y, sl->player.x);
-		move_character(sl, &(sl->player.pos[R_FOWARD]), p_x, p_y);
-	}
+		move_character(sl, &(sl->player.pos[R_FOWARD]), 1, 0);
 	if (kc == KEY_LEFT)
-	{
-		if (sl->player.x <= 0 || sl->player.y <= 0 || sl->player.x >= sl->map.height|| sl->player.y >= sl->map.width)
-			return (0);
-		printf("\n(x,y)(%d,%d)\n", sl->player.y, sl->player.x);
-		p_x = sl->player.x;
-		p_y = sl->player.y;
-		if (sl->map.graph[sl->player.x][sl->player.y - 1] == '1')
-			return (0);
-		sl->player.y--;
-		printf("\n(x,y)(%d,%d)\n", sl->player.y, sl->player.x);
-		move_character(sl, &(sl->player.pos[R_RIGHT]), p_x, p_y);
-	}
+		move_character(sl, &(sl->player.pos[R_RIGHT]), 0, -1);
 	if (kc == KEY_RIGHT)
-	{
-		if (sl->player.x <= 0 || sl->player.y <= 0 || sl->player.x >= sl->map.height|| sl->player.y >= sl->map.width)
-			return (0);
-		printf("\n(x,y)(%d,%d)\n", sl->player.y, sl->player.x);
-		p_x = sl->player.x;
-		p_y = sl->player.y;
-		if (sl->map.graph[sl->player.x][sl->player.y + 1] == '1')
-			return (0);
-		sl->player.y++;
-		printf("\n(x,y)(%d,%d)\n", sl->player.y, sl->player.x);
-		move_character(sl, &(sl->player.pos[R_LEFT]), p_x, p_y);
-	}
-	printf("keycode = %d\n", kc);
+		move_character(sl, &(sl->player.pos[R_LEFT]), 0, 1);
 	return (0);
 }
