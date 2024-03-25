@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:40:12 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/19 10:42:31 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/25 11:44:57 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	get_pixel(t_img *img, int x, int y)
 {
 	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
 		return (0);
-	//print_array((int *)img->addr, 5);
 	return (((int *)img->addr)[y * (img->line_length >> 2) + x]);
 }
 
@@ -26,11 +25,11 @@ int	new_img(t_sl *sl, t_img *img, int w, int h)
 	img->height = h;
 	img->width = w;
 	if (!img->img)
-		ft_error(sl, ERR_IMG);
+		error(sl, ERR_IMG);
 	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel),
 			&(img->line_length), &(img->endian));
 	if (!img->addr)
-		ft_error(sl, ERR_IMG);
+		error(sl, ERR_IMG);
 	return (0);
 }
 
@@ -39,11 +38,11 @@ int	load_img(t_sl *sl, char *path, t_img *img)
 	img->img = mlx_xpm_file_to_image(sl->win.mlx, path, &(img->width),
 			&(img->height));
 	if (!img->img)
-		ft_error(sl, ERR_IMG);
+		error(sl, ERR_IMG);
 	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel),
 			&(img->line_length), &(img->endian));
 	if (!img->addr)
-		ft_error(sl, ERR_TXT);
+		error(sl, ERR_TXT);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:32:27 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/21 17:22:09 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/25 11:44:57 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define WIN_X 1000
 # define WIN_Y 700
 
+# define KEY_ESC 65307
 # define KEY_UP 65362
 # define KEY_DOWN 65364
 # define KEY_LEFT 65361
@@ -38,7 +39,8 @@
 
 /* utils */
 int	ft_strlen(char *s);
-int	ft_error (t_sl *sl, char *message);
+void	ft_putstr(char *s);
+int	error (t_sl *sl, char *message);
 void	free_all(char **t);
 int	hm_line(char *path);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -71,13 +73,23 @@ int	close_window(t_sl *sl);
 /*KeyHook*/
 int	key_hook(int kc, t_sl *sl);
 
+/* Display tools */
 void	put_img_to_img(t_img *dst, t_img *src, int x, int y);
+void	pixel_put(t_img *data, int x, int y, int color);
 void	mapping(char **m, t_sl *sl);
 void	put_in_camera(t_sl *sl);
 t_img	*which_tile(char type, t_sl *sl);
 
 /* set_textures */
 void	load_all(t_sl *sl);
+
+/* Animation */
+void	in_hook_mapping(char **m, t_sl *sl, t_img *img);
+void	up(char **map, t_sl *sl);
+void	down(char **map, t_sl *sl);
+void	left(char **map, t_sl *sl);
+void	right(char **map, t_sl *sl);
+
 
 /*A REMOVE*/
 # include <stdio.h>

@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:50:38 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/19 13:49:22 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/25 11:44:57 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,17 +85,17 @@ int	valid_char(char c, t_sl *sl)
 	if (c == 'E')
 	{
 		if (sl->characs.map_exit != 0)
-			return (ft_error(sl, "Error\nToo many Exits: only one is allowed, change the map boo\n"));
+			return (error(sl, "Error\nToo many Exits: only one is allowed, change the map boo\n"));
 		return (sl->characs.map_exit++, 1);
 	}
 	if (c == 'P')
 	{
 		if (sl->characs.player != 0)
-			return (ft_error(sl, "Error\nToo many Players: only one is allowed, change the map pookie\n"));
+			return (error(sl, "Error\nToo many Players: only one is allowed, change the map pookie\n"));
 		return (sl->characs.player++, 1);
 	}
 	//printf("TARACE\n");
-	return (ft_error(sl, "Error\nStick to the allowed characters, i didn't ask for you to pull some out your ass\n"));
+	return (error(sl, "Error\nStick to the allowed characters, i didn't ask for you to pull some out your ass\n"));
 }
 
 int	check_line(char *line, t_sl *sl)
@@ -108,7 +108,7 @@ int	check_line(char *line, t_sl *sl)
 			return (0);
 	//printf("end of fisrt if cond\n");
 	if (line[i] != '1' || line[ft_strlen(line) - 2] != '1')
-			return (ft_error(sl, "Error\nI swear on the holy Slayness if you don't close that damned map!\n"));
+			return (error(sl, "Error\nI swear on the holy Slayness if you don't close that damned map!\n"));
 	//printf("end of second if cond\n");
 	i++;
 	while(line[i] && line[i] != '\n')

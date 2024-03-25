@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:36:32 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/22 17:25:25 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/25 11:50:03 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_map {
 	int	tile_w;
 	char **graph;
 	t_img	map;
-	t_img textures[6];
+	t_img textures[5];
 }	t_map;
 
 typedef struct	s_mob
@@ -73,7 +73,7 @@ typedef struct	s_mob
 	int width;
 	int height;
 	t_img	pos[12];
-	t_img	current;
+	int	current_state;
 }	t_mob;
 
 typedef struct vecteur{

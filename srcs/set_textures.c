@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:53:46 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/21 15:34:35 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/25 13:55:32 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ void	load_imgs_in_texture(t_sl *sl)
 	load_img(sl, "textures/grass.xpm", &(sl->map.textures[GRASS]));
 	load_img(sl, "textures/wall.xpm", &(sl->map.textures[WALL]));
 	load_img(sl, "textures/coin.xpm", &(sl->map.textures[COIN]));
-	load_img(sl, "textures/exit.xpm", &(sl->map.textures[EXIT_BEFORE]));
-	load_img(sl, "textures/exit_after.xpm", &(sl->map.textures[EXIT_AFTER]));
-	load_img(sl, "textures/faux.xpm", &(sl->map.textures[FAUX]));
-
+	load_img(sl, "textures/test1.xpm", &(sl->map.textures[EXIT_BEFORE]));
+	load_img(sl, "textures/test2.xpm", &(sl->map.textures[EXIT_AFTER]));
 }
 
 void	load_imgs_of_player(t_sl *sl)

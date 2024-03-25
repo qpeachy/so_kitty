@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:45:49 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/19 13:49:35 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/25 11:44:57 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	free_all(char **t)
 	//free char**
 }
 
-int	ft_error (t_sl *sl, char *message)
+int	error (t_sl *sl, char *message)
 {
 	(void)sl;
 	ft_putstr(message);

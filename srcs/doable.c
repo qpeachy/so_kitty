@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:46:12 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/19 13:57:43 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/25 11:44:57 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	last_check(t_sl *sl, char **m, int x, int y)
 	if (is_it_flooded(m, sl) == 1)
 	{
 		printf("\ni = %d\n", is_it_flooded(m, sl));
-		return (ft_error(sl, "Error\nAre you trying to piss me off? Your map isn't even doable\n"));
+		return (error(sl, "Error\nAre you trying to piss me off? Your map isn't even doable\n"));
 	}
 	return (1);
 }
