@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:32:27 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/25 11:44:57 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/25 15:43:16 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define ERR_IMG "Error\nIssues with the mlx while creatinr..."
 # define ERR_TXT "Error\nBlablablabla..."
 
-# define WIN_X 1000
+# define WIN_X 800
 # define WIN_Y 700
 
 # define KEY_ESC 65307

@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:50:52 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/25 11:44:57 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/25 16:11:13 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,22 @@ int	pre_game(t_sl *sl, char **m)
 {
 	if (!pre_check_map(m, sl))
 		return(EXIT_FAILURE);
+	printf("h = %d w = %d\n", sl->map.height * 64, sl->map.height * 64);
+	sl->win.height = 800;
+	sl->win.width = 700;
 	sl->win.mlx = mlx_init();
 	if (!sl->win.mlx)
 		return (EXIT_FAILURE);
-	sl->win.window = mlx_new_window(sl->win.mlx, WIN_X, WIN_Y, "What's up bay girl?");
+	if (sl->map.height * 64 < 800 || sl->map.width * 64 < 700)
+	{
+		sl->win.height = (sl->map.height * 0.9) * 64;
+		sl->win.width = (sl->map.width * 0.9) * 64;
+	}
+	printf("h = %d w = %d\n", sl->win.height, sl->win.height);
+	sl->win.window = mlx_new_window(sl->win.mlx, sl->win.height, sl->win.width, "What's up baby girl?");
 	if (!sl->win.window)
 		return (free(sl->win.mlx), EXIT_FAILURE);
-	sl->win.renderer.img = mlx_new_image(sl->win.mlx, WIN_X, WIN_Y);
+	sl->win.renderer.img = mlx_new_image(sl->win.mlx, sl->win.height, sl->win.width);
 	sl->win.renderer.addr = mlx_get_data_addr(sl->win.renderer.img,
 							&(sl->win.renderer.bits_per_pixel),
 							&(sl->win.renderer.line_length), &(sl->win.renderer.endian));
