@@ -6,7 +6,7 @@
 #    By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/08 15:48:35 by mapale            #+#    #+#              #
-#    Updated: 2024/03/24 16:56:56 by mapale           ###   ########.fr        #
+#    Updated: 2024/03/28 17:19:44 by mapale           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC_PATH		=	srcs/
 DIR_BUILD		=	.build/
 SRCS			=	so_long.c				\
 					animations.c			\
+					animations_utils.c		\
 					get_next_line.c			\
 					get_next_line_utils.c 	\
 					mlx_tools.c				\

@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:46:12 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/25 11:44:57 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/28 15:21:26 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	can_u_play(t_sl *sl, char **m, int x, int y)
 {
 	 if (x <= 0 || y <= 0 || x >= sl->map.height|| y >= sl->map.width)
 		return (1);
-	if (m[x][y] != '1' && (m[x][y] == 'P' || m[x][y] == 'C' || m[x][y] == 'E' || m[x][y] == '0'))
+	if (m[x][y] != '1' && (m[x][y] == 'P' || m[x][y] == 'C' || m[x][y] == 'E' || m[x][y] == '0' || m[x][y] == 'K'))
 	{
 		m[x][y] = transform(m[x][y]);
 		can_u_play(sl, m, x + 1, y);
@@ -77,12 +77,9 @@ int	can_u_play(t_sl *sl, char **m, int x, int y)
 int	last_check(t_sl *sl, char **m, int x, int y)
 {
 	can_u_play(sl, m, x, y);
-	print_arr(m, sl);
+	//print_arr(m, sl);
 	if (is_it_flooded(m, sl) == 1)
-	{
-		printf("\ni = %d\n", is_it_flooded(m, sl));
 		return (error(sl, "Error\nAre you trying to piss me off? Your map isn't even doable\n"));
-	}
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:53:46 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/25 13:55:32 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/28 10:36:07 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	load_imgs_in_texture(t_sl *sl)
 	load_img(sl, "textures/coin.xpm", &(sl->map.textures[COIN]));
 	load_img(sl, "textures/test1.xpm", &(sl->map.textures[EXIT_BEFORE]));
 	load_img(sl, "textures/test2.xpm", &(sl->map.textures[EXIT_AFTER]));
+	load_img(sl, "textures/fake_coin.xpm", &(sl->map.textures[KILLER]));
 }
 
 void	load_imgs_of_player(t_sl *sl)
@@ -35,6 +36,10 @@ void	load_imgs_of_player(t_sl *sl)
 	load_img(sl, "textures/rightfoot_foward.xpm", &(sl->player.pos[R_FOWARD]));
 	load_img(sl, "textures/rightfoot_left.xpm", &(sl->player.pos[R_LEFT]));
 	load_img(sl, "textures/rightfoot_right.xpm", &(sl->player.pos[R_RIGHT]));
+	load_img(sl, "textures/dead_kitty4.xpm", &(sl->player.pos[ONE_DEAD]));
+	load_img(sl, "textures/dead_kitty3.xpm", &(sl->player.pos[TWO_DEAD]));
+	load_img(sl, "textures/dead_kitty2.xpm", &(sl->player.pos[THREE_DEAD]));
+	load_img(sl, "textures/dead_kitty1.xpm", &(sl->player.pos[FOUR_DEAD]));
 }
 void	load_all(t_sl *sl)
 {

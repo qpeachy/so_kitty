@@ -6,12 +6,14 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:36:32 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/25 11:50:03 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/28 13:47:25 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+# include <stddef.h>
 
 typedef enum e_player
 {
@@ -27,6 +29,10 @@ typedef enum e_player
 	R_FOWARD,
 	R_LEFT,
 	R_RIGHT,
+	ONE_DEAD,
+	TWO_DEAD,
+	THREE_DEAD,
+	FOUR_DEAD,
 } t_player;
 
 typedef struct	s_charaters {
@@ -62,7 +68,7 @@ typedef struct s_map {
 	int	tile_w;
 	char **graph;
 	t_img	map;
-	t_img textures[5];
+	t_img textures[6];
 }	t_map;
 
 typedef struct	s_mob
@@ -72,18 +78,25 @@ typedef struct	s_mob
 	int direction;
 	int width;
 	int height;
-	t_img	pos[12];
+	t_img	pos[16];
 	int	current_state;
 }	t_mob;
 
-typedef struct vecteur{
+typedef struct vecteur
+{
 	int	x;
 	int	y;
 } t_vect;
 
+typedef struct s_move
+{
+	unsigned int move;
+	char str[17];
+} t_move;
+
 typedef struct s_sl
 {
-	t_mob	exit;
+	t_move	move;
 	t_win	win;
 	t_map	map;
 	t_mob	player;
@@ -97,7 +110,7 @@ enum textures
 	COIN,
 	EXIT_BEFORE,
 	EXIT_AFTER,
-	FAUX,
+	KILLER,
 };
 
 #endif

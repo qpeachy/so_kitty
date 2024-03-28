@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:50:38 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/25 11:44:57 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/28 15:21:49 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,16 @@ int	hm_line(char *path)
 	cnt = 0;
 	fd = open(path, O_RDONLY);
 	l = get_next_line(fd);
-	//printf("%s\n", l);
 	while(l)
 	{
-		printf("%s", l);
+		//printf("%s", l);
 		cnt++;
 		free(l);
 		l = get_next_line(fd);
 	}
 	free(l);
 	close(fd);
-	printf("\n----------------------------\n");
+	//printf("\n----------------------------\n");
 	return (cnt);
 }
 
@@ -52,7 +51,7 @@ char	**get_map(char *path, t_sl *sl)
 	{
 		map[i] = ft_strdup(l);
 		if (!map[i])
-			return(free_all(map), NULL);
+			return(free_map(sl), NULL);
 		free(l);
 		l = get_next_line(fd);
 		i++;
@@ -78,7 +77,7 @@ int	is_it_closed(char *line)
 
 int	valid_char(char c, t_sl *sl)
 {
-	if (c == '0' || c == '1')
+	if (c == '0' || c == '1' || c == 'K')
 		return (1);
 	if (c == 'C')
 		return (sl->characs.collectibles++, 1);
@@ -94,7 +93,6 @@ int	valid_char(char c, t_sl *sl)
 			return (error(sl, "Error\nToo many Players: only one is allowed, change the map pookie\n"));
 		return (sl->characs.player++, 1);
 	}
-	//printf("TARACE\n");
 	return (error(sl, "Error\nStick to the allowed characters, i didn't ask for you to pull some out your ass\n"));
 }
 
@@ -106,10 +104,8 @@ int	check_line(char *line, t_sl *sl)
 	if (sl->map.height == 0)
 		if (!is_it_closed(line))
 			return (0);
-	//printf("end of fisrt if cond\n");
 	if (line[i] != '1' || line[ft_strlen(line) - 2] != '1')
 			return (error(sl, "Error\nI swear on the holy Slayness if you don't close that damned map!\n"));
-	//printf("end of second if cond\n");
 	i++;
 	while(line[i] && line[i] != '\n')
 	{

@@ -6,47 +6,64 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:03:28 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/25 14:50:44 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/28 17:18:54 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	call(char **map, t_sl *sl, int x, int y)
+void	call_last(t_sl *sl, int x, int y)
 {
 	if (x == -1)
-		up(map, sl);
+		up(sl->map.graph, sl, 1);
 	if (x == 1)
-		down(map, sl);
+		down(sl->map.graph, sl, 1);
 	if (y == -1)
-		right(map, sl);
+		right(sl->map.graph, sl, 1);
 	if (y == 1)
-		left(map, sl);
+		left(sl->map.graph, sl, 1);
+}
+
+void	call_first(t_sl *sl, int x, int y)
+{
+	if (x == -1)
+		up(sl->map.graph, sl, 0);
+	if (x == 1)
+		down(sl->map.graph, sl, 0);
+	if (y == -1)
+		right(sl->map.graph, sl, 0);
+	if (y == 1)
+		left(sl->map.graph, sl, 0);
 }
 
 void	game_finished(t_sl *sl)
 {
-	ft_putstr("You did it hoe congrats\n(Your Mum played better tho)\n");
+	ft_putstr("You did it babe congrats\n(Hope your dating game's better tho)\n");
 	close_window(sl);
 }
+
+
 
 void	move_character(t_sl *sl, int x, int y)
 {
 	t_vect old_pos;
-
+	 
+	if (sl->map.graph[sl->player.x + x][sl->player.y + y] == 'k')
+		kitty_died(sl);
 	if (sl->characs.collectibles == 0 && sl->map.graph[sl->player.x + x][sl->player.y + y] == 'e')
 		game_finished(sl);
 	if (sl->map.graph[sl->player.x + x][sl->player.y + y] == 'e' || sl->map.graph[sl->player.x + x][sl->player.y + y] == '1')
 		return ;
 	old_pos.x = sl->player.x;
 	old_pos.y = sl->player.y;
+	call_first(sl, x, y);
 	sl->player.x += x;
 	sl->player.y += y;
 	if (sl->map.graph[sl->player.x][sl->player.y] == 'c')
 		sl->characs.collectibles --;
 	sl->map.graph[sl->player.x][sl->player.y] = 'p';
 	sl->map.graph[old_pos.x][old_pos.y] = '.';
-	call(sl->map.graph, sl, x, y);
+	call_last(sl, x, y);
 }
 
 int	key_hook(int kc, t_sl *sl)

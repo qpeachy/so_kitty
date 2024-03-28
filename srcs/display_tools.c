@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 16:48:34 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/25 14:11:00 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/28 13:24:37 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_img	*which_tile(char type, t_sl *sl)
 		return(&(sl->map.textures[GRASS]));
 	if (type == 'c')
 		return(&(sl->map.textures[COIN]));
+	if (type == 'k')
+		return(&(sl->map.textures[KILLER]));
 	if (type == 'e' && sl->characs.collectibles == 0)
 		return(&(sl->map.textures[EXIT_AFTER]));
 	if (type == 'e')
@@ -44,7 +46,7 @@ void	put_img_to_img(t_img *dst, t_img *src, int x, int y)
 		j = 0;
 		while (y + j < dst->height && j < src->height)
 		{
-			if (get_pixel(src, i, j) != 306687 && get_pixel(src, i, j) != 14917035)//#93DC55)
+			if (get_pixel(src, i, j) != 306687 && get_pixel(src, i, j) != 14917035)
 				pixel_put(dst, x + i, y + j, get_pixel(src, i, j));
 			j++;
 		}
@@ -54,21 +56,26 @@ void	put_img_to_img(t_img *dst, t_img *src, int x, int y)
 
 void	put_in_camera(t_sl *sl)
 {
-	if (sl->map.width * 64 > WIN_X)
+	if (sl->map.width * 64 == sl->win.width&& sl->map.height * 64 == sl->win.height)
+		mlx_put_image_to_window(sl->win.mlx, sl->win.window, sl->map.map.img, 0, 0);
+	else
 	{
-		if ((sl->player.y * 64) >= WIN_X * 0.5)
-			sl->map.x = -((sl->player.y * 64) - (WIN_X * 0.5));
-		if (sl->map.x * -1 > (sl->map.width * 64) - WIN_X)
-			sl->map.x = (sl->map.width * -64) + WIN_X;
+		if (sl->map.width * 64 > sl->win.height)
+		{
+			if ((sl->player.y * 64) >= sl->win.height * 0.5)
+				sl->map.x = -((sl->player.y * 64) - (sl->win.height * 0.5));
+			if (sl->map.x * -1 > (sl->map.width * 64) - sl->win.height)
+				sl->map.x = (sl->map.width * -64) + sl->win.height;
+		}
+		if (sl->map.height * 64 > sl->win.width)
+		{
+			if ((sl->player.x * 64) >= sl->win.width * 0.5)
+				sl->map.y = -((sl->player.x * 64) - (sl->win.width * 0.5));
+			if (sl->map.y * -1 > (sl->map.height * 64) - sl->win.width)
+				sl->map.y = (sl->map.height * -64) + sl->win.width;
+		}
+		mlx_put_image_to_window(sl->win.mlx, sl->win.window, sl->map.map.img, sl->map.x, sl->map.y);
 	}
-	if (sl->map.height * 64 > WIN_Y)
-	{
-		if ((sl->player.x * 64) >= WIN_Y * 0.5)
-			sl->map.y = -((sl->player.x * 64) - (WIN_Y * 0.5));
-		if (sl->map.y * -1 > (sl->map.height * 64) - WIN_Y)
-			sl->map.y = (sl->map.height * -64) + WIN_Y;
-	}
-	mlx_put_image_to_window(sl->win.mlx, sl->win.window, sl->map.map.img, sl->map.x, sl->map.y);
 }
 
 void	mapping(char **m, t_sl *sl)

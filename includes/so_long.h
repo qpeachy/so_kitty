@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:32:27 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/25 15:43:16 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/28 17:22:53 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@
 # define ERR_IMG "Error\nIssues with the mlx while creatinr..."
 # define ERR_TXT "Error\nBlablablabla..."
 
-# define WIN_X 800
-# define WIN_Y 700
-
 # define KEY_ESC 65307
 # define KEY_UP 65362
 # define KEY_DOWN 65364
@@ -41,7 +38,7 @@
 int	ft_strlen(char *s);
 void	ft_putstr(char *s);
 int	error (t_sl *sl, char *message);
-void	free_all(char **t);
+void	free_map(t_sl *sl);
 int	hm_line(char *path);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 
@@ -69,6 +66,7 @@ int	new_img(t_sl *sl, t_img *img, int w, int h);
 int	load_img(t_sl *sl, char *path, t_img *img);
 int	get_pixel(t_img *img, int x, int y);
 int	close_window(t_sl *sl);
+int	destroy_img(t_sl *sl, t_img *img);
 
 /*KeyHook*/
 int	key_hook(int kc, t_sl *sl);
@@ -84,12 +82,17 @@ t_img	*which_tile(char type, t_sl *sl);
 void	load_all(t_sl *sl);
 
 /* Animation */
-void	in_hook_mapping(char **m, t_sl *sl, t_img *img);
-void	up(char **map, t_sl *sl);
-void	down(char **map, t_sl *sl);
-void	left(char **map, t_sl *sl);
-void	right(char **map, t_sl *sl);
+void	up(char **map, t_sl *sl, int status);
+void	down(char **map, t_sl *sl, int status);
+void	left(char **map, t_sl *sl, int status);
+void	right(char **map, t_sl *sl, int status);
+void	kitty_died(t_sl *sl);
 
+/*Animation utils*/
+void	in_hook_mapping(char **m, t_sl *sl, t_img *img);
+void wait(void);
+
+void init_move(t_sl *sl);
 
 /*A REMOVE*/
 # include <stdio.h>

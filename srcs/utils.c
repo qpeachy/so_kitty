@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:45:49 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/25 11:44:57 by mapale           ###   ########.fr       */
+/*   Updated: 2024/03/28 17:15:28 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,19 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-void	free_all(char **t)
+void	free_map(t_sl *sl)
 {
-	(void)t;
-	//free char**
+	int	i;
+
+	i = 0;
+	while (i < sl->map.height)
+		free(sl->map.graph[i++]);
+	free(sl->map.graph);
 }
 
 int	error (t_sl *sl, char *message)
 {
 	(void)sl;
 	ft_putstr(message);
- /* 	mlx_destroy_image(sl->win.mlx, sl->win.renderer.img);
-	mlx_destroy_window(sl->win.mlx, sl->win.window);
-	mlx_destroy_display(sl->win.mlx); */
-	//ft_putstr(message);
 	return (0);
 }
