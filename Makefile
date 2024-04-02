@@ -6,14 +6,14 @@
 #    By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/08 15:48:35 by mapale            #+#    #+#              #
-#    Updated: 2024/03/28 17:19:44 by mapale           ###   ########.fr        #
+#    Updated: 2024/04/02 15:12:48 by mapale           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	so_long
 CC				=	cc
 CFLAGS			=	-Wall -Werror -Wextra -g3
-HEADER_FILE		=	so_long.h
+HEADER_FILE		=	so_long.h structs.h
 SRC_PATH		=	srcs/
 DIR_BUILD		=	.build/
 SRCS			=	so_long.c				\
@@ -22,6 +22,7 @@ SRCS			=	so_long.c				\
 					get_next_line.c			\
 					get_next_line_utils.c 	\
 					mlx_tools.c				\
+					display.c				\
 					display_tools.c			\
 					utils.c					\
 					parsing.c				\
@@ -29,7 +30,7 @@ SRCS			=	so_long.c				\
 					doable.c				\
 					key_hook.c				\
 					set_textures.c			\
-					removeAFTER.c			\
+					textures_tools.c		\
 
 OBJS			=	$(patsubst %.c, $(DIR_BUILD)%.o, $(SRCS))
 
@@ -62,7 +63,7 @@ all:
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LIBS) -o $(NAME)
 
-$(DIR_BUILD)%.o:$(SRC_PATH)%.c
+$(DIR_BUILD)%.o:$(SRC_PATH)%.c includes/so_long.h includes/structs.h
 	@mkdir -p $(DIR_BUILD)
 	$(CC) $(CFLAGS) $(DEPS_FLAGS) $(INCLUDES) -c $< -o $@
 

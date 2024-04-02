@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:03:28 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/28 17:18:54 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 15:33:46 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,28 @@ void	call_first(t_sl *sl, int x, int y)
 
 void	game_finished(t_sl *sl)
 {
-	ft_putstr("You did it babe congrats\n(Hope your dating game's better tho)\n");
+	ft_putstr("You did it babe congrats\n");
+	ft_putstr("Hope your dating game's better tho)\n");
 	close_window(sl);
 }
 
-
-
 void	move_character(t_sl *sl, int x, int y)
 {
-	t_vect old_pos;
-	 
+	t_vect	old_pos;
+
+	sl->move.move++;
+	init_move(sl);
+	call_first(sl, x, y);
 	if (sl->map.graph[sl->player.x + x][sl->player.y + y] == 'k')
 		kitty_died(sl);
-	if (sl->characs.collectibles == 0 && sl->map.graph[sl->player.x + x][sl->player.y + y] == 'e')
+	if (sl->characs.collectibles == 0 \
+		&& sl->map.graph[sl->player.x + x][sl->player.y + y] == 'e')
 		game_finished(sl);
-	if (sl->map.graph[sl->player.x + x][sl->player.y + y] == 'e' || sl->map.graph[sl->player.x + x][sl->player.y + y] == '1')
+	if (sl->map.graph[sl->player.x + x][sl->player.y + y] == 'e' \
+		|| sl->map.graph[sl->player.x + x][sl->player.y + y] == '1')
 		return ;
 	old_pos.x = sl->player.x;
 	old_pos.y = sl->player.y;
-	call_first(sl, x, y);
 	sl->player.x += x;
 	sl->player.y += y;
 	if (sl->map.graph[sl->player.x][sl->player.y] == 'c')
@@ -70,7 +73,8 @@ int	key_hook(int kc, t_sl *sl)
 {
 	if (kc == KEY_ESC)
 		return (close_window(sl));
-	if (sl->player.x <= 0 || sl->player.y <= 0 || sl->player.x >= sl->map.height|| sl->player.y >= sl->map.width)
+	if (sl->player.x <= 0 || sl->player.y <= 0 || \
+		sl->player.x >= sl->map.height || sl->player.y >= sl->map.width)
 		return (0);
 	if (kc == KEY_UP)
 		move_character(sl, -1, 0);

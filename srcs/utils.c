@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:45:49 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/28 17:15:28 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 15:18:37 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	free_map(t_sl *sl)
 	free(sl->map.graph);
 }
 
-int	error (t_sl *sl, char *message)
+int	error(t_sl *sl, char *message)
 {
 	(void)sl;
 	ft_putstr(message);

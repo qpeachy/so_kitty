@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:46:12 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/28 15:21:26 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 16:13:46 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	is_in_s(char *s, char c)
 	i = 0;
 	while (s[i])
 	{
-		//printf("%c\n",s[i]);
 		if (c == '\n')
 			i++;
 		if (c == '\0' || s[i] == c)
@@ -29,27 +28,17 @@ int	is_in_s(char *s, char c)
 	return (1);
 }
 
-char	transform(char c)
-{
-	if (c == '0')
-		return ('.');
-	else
-		return(c + 32);
-}
-
 int	is_it_flooded(char **m, t_sl *sl)
 {
 	int	x;
 	int	y;
 
 	x = 0;
-	//print_arr(m, sl);
 	while (x < sl->map.height)
 	{
 		y = 0;
-		while(y < sl->map.width)
+		while (y < sl->map.width)
 		{
-			//printf("\n%c is_in = %d\n",  m[x][y], is_in_s("1.pce", m[x][y]));
 			if (!is_in_s("1.pce", m[x][y]))
 				return (0);
 			y++;
@@ -61,9 +50,10 @@ int	is_it_flooded(char **m, t_sl *sl)
 
 int	can_u_play(t_sl *sl, char **m, int x, int y)
 {
-	 if (x <= 0 || y <= 0 || x >= sl->map.height|| y >= sl->map.width)
+	if (x <= 0 || y <= 0 || x >= sl->map.height || y >= sl->map.width)
 		return (1);
-	if (m[x][y] != '1' && (m[x][y] == 'P' || m[x][y] == 'C' || m[x][y] == 'E' || m[x][y] == '0' || m[x][y] == 'K'))
+	if (m[x][y] != '1' && (m[x][y] == 'P' || m[x][y] == 'C' \
+		|| m[x][y] == 'E' || m[x][y] == '0' || m[x][y] == 'K'))
 	{
 		m[x][y] = transform(m[x][y]);
 		can_u_play(sl, m, x + 1, y);
@@ -77,9 +67,9 @@ int	can_u_play(t_sl *sl, char **m, int x, int y)
 int	last_check(t_sl *sl, char **m, int x, int y)
 {
 	can_u_play(sl, m, x, y);
-	//print_arr(m, sl);
 	if (is_it_flooded(m, sl) == 1)
-		return (error(sl, "Error\nAre you trying to piss me off? Your map isn't even doable\n"));
+		return (error(sl, "Error\n \
+		Are you trying to piss me off? Your map isn't even doable\n"));
 	return (1);
 }
 
@@ -87,12 +77,12 @@ int	pre_doable(t_sl *sl, char **m)
 {
 	int		x;
 	int		y;
-	
+
 	x = 0;
 	while (x < sl->map.height)
 	{
 		y = 0;
-		while(y < sl->map.width)
+		while (y < sl->map.width)
 		{
 			if (m[x][y] == 'P')
 			{

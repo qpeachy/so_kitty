@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:53:46 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/28 10:36:07 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 15:34:04 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,32 @@ void	load_imgs_of_player(t_sl *sl)
 	load_img(sl, "textures/dead_kitty2.xpm", &(sl->player.pos[THREE_DEAD]));
 	load_img(sl, "textures/dead_kitty1.xpm", &(sl->player.pos[FOUR_DEAD]));
 }
+
 void	load_all(t_sl *sl)
 {
 	load_imgs_in_texture(sl);
 	load_imgs_of_player(sl);
+}
+
+int	init_parameters(t_sl *sl, char **av)
+{
+	sl->move.move = 0;
+	sl->characs.map_exit = 0;
+	sl->characs.player = 0;
+	sl->characs.collectibles = 0;
+	sl->map.tile_w = 64;
+	sl->map.height = hm_line(av[1]);
+	sl->map.graph = get_map(av[1], sl);
+	if (!sl->map.graph)
+		return (1);
+	sl->move.str = (char *)malloc(sizeof(char) * 7);
+	if (!sl->move.str)
+		return (1);
+	sl->move.str = "Move :";
+	sl->move.nbr = (char *)malloc(sizeof(char) * 10);
+	if (!sl->move.nbr)
+		return (1);
+	ft_bzero(sl->move.nbr, 10);
+	sl->move.nbr[0] = '0';
+	return (0);
 }

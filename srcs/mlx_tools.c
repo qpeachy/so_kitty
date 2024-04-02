@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:40:12 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/28 10:59:26 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 15:30:34 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	destroy_img(t_sl *sl, t_img *img)
 int	destroy_all_image(t_sl *sl)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -64,22 +64,5 @@ int	destroy_all_image(t_sl *sl)
 		destroy_img(sl, &(sl->map.textures[i++]));
 	while (j < 16)
 		destroy_img(sl, &(sl->player.pos[j++]));
-	return (0);
-}
-
-int	close_window(t_sl *sl)
-{
-	free_map(sl);
-	destroy_all_image(sl);
-	destroy_img(sl, &(sl->map.map));//
-	destroy_img(sl, &(sl->win.renderer));
-	if (sl->win.renderer.img)
-		mlx_destroy_window(sl->win.mlx, sl->win.window);
-	if (sl->win.mlx)
-	{
-		mlx_destroy_display(sl->win.mlx);
-		free(sl->win.mlx);
-	}
-	exit(0);
 	return (0);
 }

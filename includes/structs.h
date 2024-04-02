@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:36:32 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/28 13:47:25 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 16:00:57 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,17 @@ typedef enum e_player
 	TWO_DEAD,
 	THREE_DEAD,
 	FOUR_DEAD,
-} t_player;
+}	t_player;
 
-typedef struct	s_charaters {
+typedef struct s_charaters
+{
 	int	collectibles;
 	int	map_exit;
 	int	player;
 }	t_charac;
 
-typedef struct	s_img {
+typedef struct s_img
+{
 	void	*img;
 	char	*addr;
 	int		height;
@@ -60,50 +62,52 @@ typedef struct s_win
 	int		width;
 }	t_win;
 
-typedef struct s_map {
-	int	x;
-	int	y;
-	int	width;
-	int	height;
-	int	tile_w;
-	char **graph;
+typedef struct s_map
+{
+	int		x;
+	int		y;
+	int		width;
+	int		height;
+	int		tile_w;
+	char	**graph;
 	t_img	map;
-	t_img textures[6];
+	t_img	textures[6];
 }	t_map;
 
-typedef struct	s_mob
+typedef struct s_mob
 {
-	int	x;
-	int	y;
-	int direction;
-	int width;
-	int height;
+	int		x;
+	int		y;
+	int		direction;
+	int		width;
+	int		height;
 	t_img	pos[16];
-	int	current_state;
+	int		current_state;
 }	t_mob;
 
 typedef struct vecteur
 {
 	int	x;
 	int	y;
-} t_vect;
+}	t_vect;
 
 typedef struct s_move
 {
-	unsigned int move;
-	char str[17];
-} t_move;
+	unsigned int	move;
+	char			*str;
+	char			*nbr;
+}	t_move;
 
 typedef struct s_sl
 {
-	t_move	move;
-	t_win	win;
-	t_map	map;
-	t_mob	player;
-	t_charac characs;
+	t_move		move;
+	t_win		win;
+	t_map		map;
+	t_mob		player;
+	t_charac	characs;
 }	t_sl;
 
-enum textures
+typedef enum e_textures
 {
 	GRASS,
 	WALL,
@@ -111,6 +115,6 @@ enum textures
 	EXIT_BEFORE,
 	EXIT_AFTER,
 	KILLER,
-};
+}	t_textures;
 
 #endif

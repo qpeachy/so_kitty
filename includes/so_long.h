@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:32:27 by mapale            #+#    #+#             */
-/*   Updated: 2024/03/28 17:22:53 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 16:10:12 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <stdbool.h>
 # include <unistd.h>
 
-# define ERR_IMG "Error\nIssues with the mlx while creatinr..."
-# define ERR_TXT "Error\nBlablablabla..."
+# define ERR_IMG "Error\nIssues with the mlx while creating img"
+# define ERR_TXT "Error\nIssues with the mlx while getting data"
 
 # define KEY_ESC 65307
 # define KEY_UP 65362
@@ -35,12 +35,12 @@
 # define KEY_RIGHT 65363
 
 /* utils */
-int	ft_strlen(char *s);
+int		ft_strlen(char *s);
 void	ft_putstr(char *s);
-int	error (t_sl *sl, char *message);
+int		error(t_sl *sl, char *message);
 void	free_map(t_sl *sl);
-int	hm_line(char *path);
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
+int		hm_line(char *path);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 /* GetNextLine */
 char	*get_next_line(int fd);
@@ -51,25 +51,25 @@ char	*ft_strdup(char *s);
 char	*ft_strdup_s(char *s, int start, int stop);
 
 /*Parsing*/
-int	pre_check_map(char **m, t_sl *sl);
 char	**get_map(char *path, t_sl *sl);
-int	is_it_closed(char *line);
-int	valid_char(char c, t_sl *sl);
-int	check_line(char *line, t_sl *sl);
-int	is_map_valid(char **map, t_sl *sl);
+int		is_it_closed(char *line);
+int		valid_char(char c, t_sl *sl);
+int		check_line(char *line, t_sl *sl);
+int		is_map_valid(char **map, t_sl *sl);
 
 /*Doable*/
-int	pre_doable(t_sl *sl, char **m);
+int		pre_doable(t_sl *sl, char **m);
 
 /*mlx_tools*/
-int	new_img(t_sl *sl, t_img *img, int w, int h);
-int	load_img(t_sl *sl, char *path, t_img *img);
-int	get_pixel(t_img *img, int x, int y);
-int	close_window(t_sl *sl);
-int	destroy_img(t_sl *sl, t_img *img);
+int		new_img(t_sl *sl, t_img *img, int w, int h);
+int		load_img(t_sl *sl, char *path, t_img *img);
+int		get_pixel(t_img *img, int x, int y);
+int		close_window(t_sl *sl);
+int		destroy_img(t_sl *sl, t_img *img);
+int		destroy_all_image(t_sl *sl);
 
 /*KeyHook*/
-int	key_hook(int kc, t_sl *sl);
+int		key_hook(int kc, t_sl *sl);
 
 /* Display tools */
 void	put_img_to_img(t_img *dst, t_img *src, int x, int y);
@@ -90,12 +90,13 @@ void	kitty_died(t_sl *sl);
 
 /*Animation utils*/
 void	in_hook_mapping(char **m, t_sl *sl, t_img *img);
-void wait(void);
+void	wait(void);
 
-void init_move(t_sl *sl);
+void	ft_bzero(void *s, size_t n);
+void	str_put(t_sl *sl);
+char	transform(char c);
+int		close_window(t_sl *sl);
+void	init_move(t_sl *sl);
+int		init_parameters(t_sl *sl, char **av);
 
-/*A REMOVE*/
-# include <stdio.h>
-void	print_arr(char **s, t_sl *sl);
-void	print_array(int *a, int size);
 #endif
