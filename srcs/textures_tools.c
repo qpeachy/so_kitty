@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 13:25:15 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 15:37:36 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 16:40:01 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_bzero(void *s, size_t n)
 
 void	str_put(t_sl *sl)
 {
-	mlx_string_put((sl->win.mlx), (sl->win.window), 10, 10, 0, sl->move.str);
+	mlx_string_put((sl->win.mlx), (sl->win.window), 10, 10, 0, "Move :");
 	mlx_string_put((sl->win.mlx), (sl->win.window), 65, 10, 0, sl->move.nbr);
 }
 
@@ -41,7 +41,6 @@ char	transform(char c)
 
 int	close_window(t_sl *sl)
 {
-	free(sl->move.str);
 	free_map(sl);
 	destroy_all_image(sl);
 	destroy_img(sl, &(sl->map.map));

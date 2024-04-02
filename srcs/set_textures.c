@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:53:46 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 15:34:04 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 16:41:35 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,6 @@ int	init_parameters(t_sl *sl, char **av)
 	sl->map.graph = get_map(av[1], sl);
 	if (!sl->map.graph)
 		return (1);
-	sl->move.str = (char *)malloc(sizeof(char) * 7);
-	if (!sl->move.str)
-		return (1);
-	sl->move.str = "Move :";
 	sl->move.nbr = (char *)malloc(sizeof(char) * 10);
 	if (!sl->move.nbr)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:45:49 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 15:18:37 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 16:41:14 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	free_map(t_sl *sl)
 	int	i;
 
 	i = 0;
+	if (sl->move.nbr)
+		free(sl->move.nbr);
 	while (i < sl->map.height)
 		free(sl->map.graph[i++]);
 	free(sl->map.graph);

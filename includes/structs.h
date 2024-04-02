@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:36:32 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 16:00:57 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 16:40:51 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ typedef struct vecteur
 typedef struct s_move
 {
 	unsigned int	move;
-	char			*str;
 	char			*nbr;
 }	t_move;
 
