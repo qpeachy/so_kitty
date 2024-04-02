@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:32:27 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 16:10:12 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 18:16:15 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 /* utils */
 int		ft_strlen(char *s);
-void	ft_putstr(char *s);
+void	putstr_fd(char *s);
 int		error(t_sl *sl, char *message);
 void	free_map(t_sl *sl);
 int		hm_line(char *path);
@@ -56,6 +56,7 @@ int		is_it_closed(char *line);
 int		valid_char(char c, t_sl *sl);
 int		check_line(char *line, t_sl *sl);
 int		is_map_valid(char **map, t_sl *sl);
+int		check_valid_textures(t_sl *sl);
 
 /*Doable*/
 int		pre_doable(t_sl *sl, char **m);

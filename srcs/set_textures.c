@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:53:46 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 16:41:35 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 18:39:36 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	init_parameters(t_sl *sl, char **av)
 	sl->characs.collectibles = 0;
 	sl->map.tile_w = 64;
 	sl->map.height = hm_line(av[1]);
+	if (sl->map.height == -1)
+		exit(1);
 	sl->map.graph = get_map(av[1], sl);
 	if (!sl->map.graph)
 		return (1);

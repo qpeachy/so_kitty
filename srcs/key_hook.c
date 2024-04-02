@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:03:28 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 15:33:46 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 17:43:59 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	call_first(t_sl *sl, int x, int y)
 
 void	game_finished(t_sl *sl)
 {
-	ft_putstr("You did it babe congrats\n");
-	ft_putstr("Hope your dating game's better tho)\n");
+	putstr_fd("You did it babe congrats\n");
+	putstr_fd("(Hope your dating game's better tho)\n");
 	close_window(sl);
 }
 

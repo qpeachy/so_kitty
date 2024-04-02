@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:50:38 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 16:13:15 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 17:07:18 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	hm_line(char *path)
 
 	cnt = 0;
 	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (-1);
 	l = get_next_line(fd);
 	while (l)
 	{
@@ -41,6 +43,8 @@ char	**get_map(char *path, t_sl *sl)
 
 	i = 0;
 	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		exit(1);
 	l = get_next_line(fd);
 	map = malloc(sizeof(char *) * sl->map.height);
 	if (!map)

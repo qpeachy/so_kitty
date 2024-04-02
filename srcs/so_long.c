@@ -6,21 +6,21 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:50:52 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 16:28:35 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 18:44:30 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	pre_game(t_sl *sl, char **m)
+int	pre_game(t_sl *sl)
 {
-	if (!is_map_valid(m, sl))
-		return (EXIT_FAILURE);
+	if (check_valid_textures(sl))
+		error(sl, "Error\n The textures are not texturing");
 	sl->win.height = sl->map.height * 64;
 	sl->win.width = sl->map.width * 64;
 	sl->win.mlx = mlx_init();
 	if (!sl->win.mlx)
-		return (EXIT_FAILURE);
+		return (free(sl->move.nbr), EXIT_FAILURE);
 	if (sl->win.height > 800)
 		sl->win.height = 800;
 	if (sl->win.width > 700)
@@ -28,14 +28,15 @@ int	pre_game(t_sl *sl, char **m)
 	sl->win.window = mlx_new_window(sl->win.mlx, sl->win.width, \
 		sl->win.height, "What's up baby girl?");
 	if (!sl->win.window)
-		return (free(sl->win.mlx), EXIT_FAILURE);
+		return (free(sl->win.mlx), \
+		free(sl->move.nbr), EXIT_FAILURE);
 	sl->win.renderer.img = mlx_new_image(sl->win.mlx, \
 		sl->win.width, sl->win.height);
 	sl->win.renderer.addr = mlx_get_data_addr(sl->win.renderer.img,
 			&(sl->win.renderer.bits_per_pixel),
 			&(sl->win.renderer.line_length), &(sl->win.renderer.endian));
-	load_all(sl);
 	sl->player.current_state = S_FOWARD;
+	load_all(sl);
 	return (1);
 }
 
@@ -72,12 +73,14 @@ int	main(int ac, char **av)
 	t_sl	sl;
 
 	if (ac != 2)
-		return (EXIT_SUCCESS);
+		return (putstr_fd("Error\n Two arguments are allowed\n"), EXIT_FAILURE);
 	if (ft_strncmp(".ber", av[1] + (ft_strlen(av[1]) - 4), 3) != 0)
 		return (error(&sl, "Error\nInvalid map extension\n"));
 	if (init_parameters(&sl, av))
 		return (free_map(&sl), EXIT_FAILURE);
-	if (!pre_game(&sl, sl.map.graph))
+	if (!is_map_valid(sl.map.graph, &sl))
+		return (EXIT_FAILURE);
+	if (!pre_game(&sl))
 		return (free_map(&sl), EXIT_FAILURE);
 	mapping(sl.map.graph, &sl);
 	mlx_hook(sl.win.window, 17, 1L << 0, close_window, &sl);

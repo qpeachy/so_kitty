@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:45:49 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 16:41:14 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 18:38:06 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-void	ft_putstr(char *s)
+void	putstr_fd(char *s)
 {
 	int	i;
 
@@ -56,7 +56,7 @@ void	free_map(t_sl *sl)
 	i = 0;
 	if (sl->move.nbr)
 		free(sl->move.nbr);
-	while (i < sl->map.height)
+	while (i < sl->map.height && sl->map.graph[i])
 		free(sl->map.graph[i++]);
 	free(sl->map.graph);
 }
@@ -64,6 +64,9 @@ void	free_map(t_sl *sl)
 int	error(t_sl *sl, char *message)
 {
 	(void)sl;
-	ft_putstr(message);
-	return (0);
+	putstr_fd("WSHSH\n\n\n");
+	free_map(sl);
+	putstr_fd(message);
+	exit(1);
+	return (1);
 }

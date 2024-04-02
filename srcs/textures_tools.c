@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 13:25:15 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 16:40:01 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 17:08:03 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_bzero(void *s, size_t n)
 
 void	str_put(t_sl *sl)
 {
-	mlx_string_put((sl->win.mlx), (sl->win.window), 10, 10, 0, "Move :");
+	mlx_string_put((sl->win.mlx), (sl->win.window), 10, 10, 0, "Moves :");
 	mlx_string_put((sl->win.mlx), (sl->win.window), 65, 10, 0, sl->move.nbr);
 }
 

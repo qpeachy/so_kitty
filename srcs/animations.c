@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:42:40 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 15:34:13 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 17:43:59 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,6 @@ void	kitty_died(t_sl *sl)
 	in_hook_mapping(sl->map.graph, sl, &(sl->player.pos[FOUR_DEAD]));
 	wait();
 	wait();
-	ft_putstr("AURR NAUR YOU DIIIEDDD\n");
+	putstr_fd("AURR NAUR YOU DIIIEDDD\n");
 	close_window(sl);
 }
