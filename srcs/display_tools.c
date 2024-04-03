@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 16:48:34 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 15:36:14 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/03 14:08:56 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ t_img	*which_tile(char type, t_sl *sl)
 		return (&(sl->map.textures[GRASS]));
 	if (type == 'c')
 		return (&(sl->map.textures[COIN]));
-	if (type == 'k')
+	if (type == 'K')
 		return (&(sl->map.textures[KILLER]));
-	if (type == 'e' && sl->characs.collectibles == 0)
+	if (type == 'E' && sl->characs.collectibles == 0)
 		return (&(sl->map.textures[EXIT_AFTER]));
-	if (type == 'e')
+	if (type == 'E')
 		return (&(sl->map.textures[EXIT_BEFORE]));
 	if (type == 'p')
 		return (&(sl->player.pos[S_FOWARD]));
@@ -63,7 +63,6 @@ int	num_size(int n)
 	cnt = 0;
 	if (n < 10)
 		return (1);
-	else
 	{
 		while (n != 0)
 		{

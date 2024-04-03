@@ -6,7 +6,7 @@
 #    By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/08 15:48:35 by mapale            #+#    #+#              #
-#    Updated: 2024/04/02 18:43:50 by mapale           ###   ########.fr        #
+#    Updated: 2024/04/03 14:10:16 by mapale           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRCS			=	so_long.c				\
 					key_hook.c				\
 					set_textures.c			\
 					textures_tools.c		\
-					check_textures.c
+					check_textures.c		\
 
 OBJS			=	$(patsubst %.c, $(DIR_BUILD)%.o, $(SRCS))
 

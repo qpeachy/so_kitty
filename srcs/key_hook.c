@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:03:28 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 17:43:59 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/03 14:01:46 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void	move_character(t_sl *sl, int x, int y)
 	sl->move.move++;
 	init_move(sl);
 	call_first(sl, x, y);
-	if (sl->map.graph[sl->player.x + x][sl->player.y + y] == 'k')
+	if (sl->map.graph[sl->player.x + x][sl->player.y + y] == 'K')
 		kitty_died(sl);
 	if (sl->characs.collectibles == 0 \
-		&& sl->map.graph[sl->player.x + x][sl->player.y + y] == 'e')
+		&& sl->map.graph[sl->player.x + x][sl->player.y + y] == 'E')
 		game_finished(sl);
-	if (sl->map.graph[sl->player.x + x][sl->player.y + y] == 'e' \
+	if (sl->map.graph[sl->player.x + x][sl->player.y + y] == 'E' \
 		|| sl->map.graph[sl->player.x + x][sl->player.y + y] == '1')
 		return ;
 	old_pos.x = sl->player.x;

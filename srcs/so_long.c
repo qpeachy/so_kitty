@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:50:52 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 18:44:30 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 18:51:08 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	pre_game(t_sl *sl)
 {
 	if (check_valid_textures(sl))
-		error(sl, "Error\n The textures are not texturing");
+		error(sl, "Error\n The textures are not texturing\n");
 	sl->win.height = sl->map.height * 64;
 	sl->win.width = sl->map.width * 64;
 	sl->win.mlx = mlx_init();

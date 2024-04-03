@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:45:49 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 18:38:06 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/02 18:47:34 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	free_map(t_sl *sl)
 int	error(t_sl *sl, char *message)
 {
 	(void)sl;
-	putstr_fd("WSHSH\n\n\n");
 	free_map(sl);
 	putstr_fd(message);
 	exit(1);
