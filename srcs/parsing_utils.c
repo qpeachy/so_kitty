@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:50:38 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/03 14:08:08 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/03 17:58:41 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ Too many Players: only one is allowed, change the map pookie\n"));
 		return (sl->characs.player++, 1);
 	}
 	return (error(sl, "Error\nStick to the allowed characters,\
-i didn't ask for you to pull some out your ass\n"));
+do not pull some out your hat\n"));
 }
 
 int	check_line(char *line, t_sl *sl)

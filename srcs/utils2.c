@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   textures_tools.c                                   :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 13:25:15 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/03 17:51:45 by mapale           ###   ########.fr       */
+/*   Created: 2024/04/03 18:10:15 by mapale            #+#    #+#             */
+/*   Updated: 2024/04/03 18:10:35 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_bzero(void *s, size_t n)
+int	num_size(int n)
 {
-	char	*temp;
+	int	cnt;
 
-	temp = (char *)s;
-	while (n > 0)
+	cnt = 0;
+	if (n < 10)
+		return (1);
 	{
-		temp[n - 1] = '\0';
-		n--;
+		while (n != 0)
+		{
+			cnt++;
+			n /= 10;
+		}
 	}
-	s = temp;
-}
-
-void	str_put(t_sl *sl)
-{
-	mlx_string_put((sl->win.mlx), (sl->win.window), 10, 10, 0, "Moves :");
-	mlx_string_put((sl->win.mlx), (sl->win.window), 65, 10, 0, sl->move.nbr);
+	return (cnt);
 }

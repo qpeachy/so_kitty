@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 16:48:34 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/03 14:08:56 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/03 18:09:03 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,20 @@ void	pixel_put(t_img *data, int x, int y, int color)
 
 t_img	*which_tile(char type, t_sl *sl)
 {
-	if (type == '1')
-		return (&(sl->map.textures[WALL]));
-	if (type == '.')
+	if (type == '.' || type == '0')
 		return (&(sl->map.textures[GRASS]));
-	if (type == 'c')
+	else if (type == 'c')
 		return (&(sl->map.textures[COIN]));
-	if (type == 'K')
+	else if (type == 'K')
 		return (&(sl->map.textures[KILLER]));
-	if (type == 'E' && sl->characs.collectibles == 0)
+	else if (type == 'e' && sl->characs.collectibles == 0)
 		return (&(sl->map.textures[EXIT_AFTER]));
-	if (type == 'E')
+	else if (type == 'e')
 		return (&(sl->map.textures[EXIT_BEFORE]));
-	if (type == 'p')
+	else if (type == 'p')
 		return (&(sl->player.pos[S_FOWARD]));
-	return (NULL);
+	else
+		return (&(sl->map.textures[WALL]));
 }
 
 void	put_img_to_img(t_img *dst, t_img *src, int x, int y)
@@ -54,45 +53,4 @@ void	put_img_to_img(t_img *dst, t_img *src, int x, int y)
 		}
 		i++;
 	}
-}
-
-int	num_size(int n)
-{
-	int	cnt;
-
-	cnt = 0;
-	if (n < 10)
-		return (1);
-	{
-		while (n != 0)
-		{
-			cnt++;
-			n /= 10;
-		}
-	}
-	return (cnt);
-}
-
-void	init_move(t_sl *sl)
-{
-	int	i;
-	int	tmp;
-
-	i = num_size(sl->move.move) - 1;
-	if (i == -1)
-		i = 0;
-	tmp = sl->move.move;
-	ft_bzero(sl->move.nbr, 10);
-	if (sl->move.move == 0)
-		sl->move.nbr[0] = '0';
-	else
-	{
-		while (tmp != 0)
-		{
-			sl->move.nbr[i] = (tmp % 10) + '0';
-			tmp /= 10;
-			i--;
-		}
-	}
-	sl->move.nbr[num_size(sl->move.move)] = '\0';
 }

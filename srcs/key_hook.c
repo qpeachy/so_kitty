@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:03:28 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/03 14:01:46 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/03 18:14:27 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	call_first(t_sl *sl, int x, int y)
 
 void	game_finished(t_sl *sl)
 {
-	putstr_fd("You did it babe congrats\n");
-	putstr_fd("(Hope your dating game's better tho)\n");
+	putstr("You did it babe congrats\n\
+(Hope your dating game's better tho)\n");
 	close_window(sl);
 }
 
@@ -47,25 +47,25 @@ void	move_character(t_sl *sl, int x, int y)
 {
 	t_vect	old_pos;
 
+	if (sl->map.graph[sl->player.x + x][sl->player.y + y] == '1')
+		return ;
 	sl->move.move++;
 	init_move(sl);
 	call_first(sl, x, y);
 	if (sl->map.graph[sl->player.x + x][sl->player.y + y] == 'K')
 		kitty_died(sl);
 	if (sl->characs.collectibles == 0 \
-		&& sl->map.graph[sl->player.x + x][sl->player.y + y] == 'E')
+		&& sl->map.graph[sl->player.x + x][sl->player.y + y] == 'e')
 		game_finished(sl);
-	if (sl->map.graph[sl->player.x + x][sl->player.y + y] == 'E' \
-		|| sl->map.graph[sl->player.x + x][sl->player.y + y] == '1')
-		return ;
 	old_pos.x = sl->player.x;
 	old_pos.y = sl->player.y;
 	sl->player.x += x;
 	sl->player.y += y;
 	if (sl->map.graph[sl->player.x][sl->player.y] == 'c')
 		sl->characs.collectibles --;
-	sl->map.graph[sl->player.x][sl->player.y] = 'p';
 	sl->map.graph[old_pos.x][old_pos.y] = '.';
+	sl->map.graph[sl->exit.x][sl->exit.y] = 'e';
+	sl->map.graph[sl->player.x][sl->player.y] = 'p';
 	call_last(sl, x, y);
 }
 

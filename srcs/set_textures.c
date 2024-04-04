@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:53:46 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 18:39:36 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/03 18:05:45 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ int	init_parameters(t_sl *sl, char **av)
 	sl->map.tile_w = 64;
 	sl->map.height = hm_line(av[1]);
 	if (sl->map.height == -1)
+	{
+		putstr_fd("Error\nMap does not exist\n");
 		exit(1);
+	}
 	sl->map.graph = get_map(av[1], sl);
 	if (!sl->map.graph)
 		return (1);

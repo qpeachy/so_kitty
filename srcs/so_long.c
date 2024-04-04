@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:50:52 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 18:51:08 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/03 18:12:13 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,27 @@ size_t	ft_strcat(char *dest, const char *src)
 	return (ft_strlen_c(src) + d_size);
 }
 
+int	check_input(char *s)
+{
+	int	i;
+
+	i = ft_strlen(s);
+	if (i <= 4)
+		return (0);
+	if (s[i - 1] == 'r' && s[i - 2] == 'e' && s[i - 3] == 'b' \
+	&& s[i - 4] == '.')
+		return (1);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_sl	sl;
 
 	if (ac != 2)
 		return (putstr_fd("Error\n Two arguments are allowed\n"), EXIT_FAILURE);
-	if (ft_strncmp(".ber", av[1] + (ft_strlen(av[1]) - 4), 3) != 0)
-		return (error(&sl, "Error\nInvalid map extension\n"));
+	if (!check_input(av[1]))
+		return (putstr_fd("Error\nInvalid map extension\n"), EXIT_FAILURE);
 	if (init_parameters(&sl, av))
 		return (free_map(&sl), EXIT_FAILURE);
 	if (!is_map_valid(sl.map.graph, &sl))

@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:36:32 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 16:40:51 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/03 14:57:14 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_sl
 	t_win		win;
 	t_map		map;
 	t_mob		player;
+	t_vect		exit;
 	t_charac	characs;
 }	t_sl;
 

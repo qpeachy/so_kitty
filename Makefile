@@ -6,7 +6,7 @@
 #    By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/08 15:48:35 by mapale            #+#    #+#              #
-#    Updated: 2024/04/03 14:10:16 by mapale           ###   ########.fr        #
+#    Updated: 2024/04/03 18:11:44 by mapale           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRCS			=	so_long.c				\
 					display.c				\
 					display_tools.c			\
 					utils.c					\
+					utils2.c					\
+					error.c					\
 					parsing.c				\
 					parsing_utils.c			\
 					doable.c				\

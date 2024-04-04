@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:01:14 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/03 14:08:27 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/03 17:37:05 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ int	is_map_valid(char **map, t_sl *sl)
 				&& sl->map.width - 1 != ft_strlen(map[line])) \
 			|| (line != sl->map.height - 1 \
 				&& sl->map.width != ft_strlen(map[line])))
-			return (error(sl, "Error\nDoes equality makes you queasy?\
+			return (error(sl, "Error\nDoes equality makes you queasy? \
 Don't care your map width should be the same\n"));
 		if (!w_line(sl, map[line]))
 			return (free_map(sl), 0);
 		line++;
 	}
 	if (!is_it_closed(map[line - 1]))
-		return (free_map(sl), error(sl, "Error\nYou known how to close a door right?\
-Then close this damned map thanks"));
+		return (error(sl, "Error\nYou known how to close a door right?\
+Then close this damned map thanks\n"));
 	return (is_the_count_good(map, sl));
 }

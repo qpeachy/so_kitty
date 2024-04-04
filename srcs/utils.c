@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:45:49 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 18:47:34 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/03 18:10:43 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-void	putstr_fd(char *s)
+void	putstr(char *s)
 {
 	int	i;
 
@@ -32,40 +32,37 @@ void	putstr_fd(char *s)
 		return ;
 	i = 0;
 	while (s[i])
-		write(2, s + (i++), 1);
+		write(1, s + (i++), 1);
 }
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	transform(char c)
 {
-	size_t	i;
-
-	i = 0;
-	if (n == 0)
-		return (0);
-	while (s1[i] && s2[i] && s1[i] == s2[i] && i < n)
-		i++;
-	if (i == n)
-		return (0);
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	if (c == '0')
+		return ('.');
+	else
+		return (c + 32);
 }
 
-void	free_map(t_sl *sl)
+void	init_move(t_sl *sl)
 {
 	int	i;
+	int	tmp;
 
-	i = 0;
-	if (sl->move.nbr)
-		free(sl->move.nbr);
-	while (i < sl->map.height && sl->map.graph[i])
-		free(sl->map.graph[i++]);
-	free(sl->map.graph);
-}
-
-int	error(t_sl *sl, char *message)
-{
-	(void)sl;
-	free_map(sl);
-	putstr_fd(message);
-	exit(1);
-	return (1);
+	i = num_size(sl->move.move) - 1;
+	if (i == -1)
+		i = 0;
+	tmp = sl->move.move;
+	ft_bzero(sl->move.nbr, 10);
+	if (sl->move.move == 0)
+		sl->move.nbr[0] = '0';
+	else
+	{
+		while (tmp != 0)
+		{
+			sl->move.nbr[i] = (tmp % 10) + '0';
+			tmp /= 10;
+			i--;
+		}
+	}
+	sl->move.nbr[num_size(sl->move.move)] = '\0';
 }

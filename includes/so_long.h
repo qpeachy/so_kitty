@@ -6,7 +6,7 @@
 /*   By: mapale <mapale@student.42Lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:32:27 by mapale            #+#    #+#             */
-/*   Updated: 2024/04/02 18:16:15 by mapale           ###   ########.fr       */
+/*   Updated: 2024/04/04 10:02:43 by mapale           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,14 @@
 
 /* utils */
 int		ft_strlen(char *s);
+void	putstr(char *s);
+int		hm_line(char *path);
+
+/*error*/
 void	putstr_fd(char *s);
 int		error(t_sl *sl, char *message);
 void	free_map(t_sl *sl);
-int		hm_line(char *path);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		close_window(t_sl *sl);
 
 /* GetNextLine */
 char	*get_next_line(int fd);
@@ -96,8 +99,8 @@ void	wait(void);
 void	ft_bzero(void *s, size_t n);
 void	str_put(t_sl *sl);
 char	transform(char c);
-int		close_window(t_sl *sl);
 void	init_move(t_sl *sl);
 int		init_parameters(t_sl *sl, char **av);
+int		num_size(int n);
 
 #endif
